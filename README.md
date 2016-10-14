@@ -9,19 +9,10 @@ This library supports only I2C.
 
 * [WiringPi](http://wiringpi.com/)
 
-## Install & Usage
-
-Pin assignment is below: 
-
-|RasPi|IMU|
-|:-:|:-:|
-|GND|GND|
-|3.3VDC Power|VDD|
-|Pin3|SDA|
-|Pin5|SCL|
+## Build
 
 ```
-$ git clone https://github.com/akimach/SparkFun_LSM9DS1_Arduino_Library.git
+$ git clone https://github.com/akimach/LSM9DS1_RaspberryPi_Library.git
+$ cd LSM9DS1_RaspberryPi_Library
 $ make
-$ sudo ./LSM9DS1_Basic_I2C
 ```
