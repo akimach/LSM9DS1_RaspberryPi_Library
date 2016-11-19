@@ -64,8 +64,8 @@ if __name__ == "__main__":
     if lib.lsm9ds1_begin(imu) == 0:
         print("Failed to communicate with LSM9DS1.")
         quit()
-    lib.lsm9ds1_calibrate(img)
-    
+    lib.lsm9ds1_calibrate(imu)
+
     while True:
         while lib.lsm9ds1_gyroAvailable(imu) == 0:
             pass
@@ -101,6 +101,6 @@ if __name__ == "__main__":
         cmy = lib.lsm9ds1_calcMag(imu, my)
         cmz = lib.lsm9ds1_calcMag(imu, mz)
 
-        printf("Gyro: %f, %f, %f [deg/s]" % (cgx, cgy, cgz))
-        printf("Accel: %f, %f, %f [Gs]" % (cax, cay, caz))
-        printf("Mag: %f, %f, %f [gauss]" % (cmx, cmy, cmz))
+        print("Gyro: %f, %f, %f [deg/s]" % (cgx, cgy, cgz))
+        print("Accel: %f, %f, %f [Gs]" % (cax, cay, caz))
+        print("Mag: %f, %f, %f [gauss]" % (cmx, cmy, cmz))
