@@ -1,4 +1,4 @@
-CC = gcc
+CC = g++
 LIB = lib/
 SRC = src/
 INCLUDE = include/
@@ -12,4 +12,6 @@ liblsm9ds1.so: $(SRC)LSM9DS1.cpp
 
 wrapper: $(SRC)
 	mkdir -p $(LIB)
-	$(CC) -I$(INCLUDE) -L$(LIB) -Wall -O2 $(SRC)LSM9DS1_c_wrapper.cpp -shared -o $(LIB)liblsm9ds1cwrapper.so
+	$(CC) -I$(INCLUDE) -Wall -O2 -fPIC -c $(SRC)LSM9DS1.cpp -o LSM9DS1.o
+	$(CC) -I$(INCLUDE) -Wall -O2 -fPIC -c $(SRC)LSM9DS1_c_wrapper.cpp -o LSM9DS1_c_wrapper.o
+	$(CC) -I$(INCLUDE) -Wall -O2 -shared LSM9DS1.o LSM9DS1_c_wrapper.o -o $(LIB)liblsm9ds1cwrapper.so
