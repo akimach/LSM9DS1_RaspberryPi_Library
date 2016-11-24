@@ -1093,7 +1093,7 @@ uint8_t LSM9DS1::I2CreadBytes(uint8_t address, uint8_t subAddress, uint8_t * des
     wiringPiI2CWrite(_fd, subAddress);
     uint8_t temp_dest[count];
     if ((read(_fd, temp_dest, 6)) < 0) {
-        #fprintf(stderr, "Error: read value\n");
+        //fprintf(stderr, "Error: read value\n");
         throw 777;
         return 0;
     }
