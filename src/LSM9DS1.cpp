@@ -494,10 +494,16 @@ uint8_t LSM9DS1::magAvailable(lsm9ds1_axis axis)
 void LSM9DS1::readAccel()
 {
     uint8_t temp[6] = {0,0,0,0,0,0}; // We'll read six bytes from the accelerometer into temp
-    xgReadBytes(OUT_X_L_XL, temp, 6); // Read 6 bytes, beginning at OUT_X_L_XL
-    ax = (temp[1] << 8) | temp[0]; // Store x-axis values into ax
-    ay = (temp[3] << 8) | temp[2]; // Store y-axis values into ay
-    az = (temp[5] << 8) | temp[4]; // Store z-axis values into az
+    try {
+        xgReadBytes(OUT_X_L_XL, temp, 6); // Read 6 bytes, beginning at OUT_X_L_XL
+        ax = (temp[1] << 8) | temp[0]; // Store x-axis values into ax
+        ay = (temp[3] << 8) | temp[2]; // Store y-axis values into ay
+        az = (temp[5] << 8) | temp[4]; // Store z-axis values into az
+    } catch(int fError) {
+        ax = ay = az = 999;
+        return;
+    }
+
     if (_autoCalc)
     {
         ax -= aBiasRaw[X_AXIS];
@@ -545,10 +551,15 @@ void LSM9DS1::readTemp()
 void LSM9DS1::readGyro()
 {
     uint8_t temp[6] = {0,0,0,0,0,0}; // We'll read six bytes from the gyro into temp
-    xgReadBytes(OUT_X_L_G, temp, 6); // Read 6 bytes, beginning at OUT_X_L_G
-    gx = (temp[1] << 8) | temp[0]; // Store x-axis values into gx
-    gy = (temp[3] << 8) | temp[2]; // Store y-axis values into gy
-    gz = (temp[5] << 8) | temp[4]; // Store z-axis values into gz
+    try {
+        xgReadBytes(OUT_X_L_G, temp, 6); // Read 6 bytes, beginning at OUT_X_L_G
+        gx = (temp[1] << 8) | temp[0]; // Store x-axis values into gx
+        gy = (temp[3] << 8) | temp[2]; // Store y-axis values into gy
+        gz = (temp[5] << 8) | temp[4]; // Store z-axis values into gz
+    } catch(int fError) {
+        gx = gy = gz = 9999;
+        return;
+    }
     if (_autoCalc)
     {
         gx -= gBiasRaw[X_AXIS];
@@ -1094,7 +1105,7 @@ uint8_t LSM9DS1::I2CreadBytes(uint8_t address, uint8_t subAddress, uint8_t * des
     uint8_t temp_dest[count];
     if ((read(_fd, temp_dest, 6)) < 0) {
         //fprintf(stderr, "Error: read value\n");
-        throw 777;
+        throw 999;
         return 0;
     }
     close(_fd);
