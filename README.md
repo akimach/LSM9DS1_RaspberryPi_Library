@@ -9,10 +9,18 @@ This library supports only I2C.
 
 * [WiringPi](http://wiringpi.com/)
 
-## Build
+## Install
 
 ```
 $ git clone https://github.com/akimach/LSM9DS1_RaspberryPi_Library.git
 $ cd LSM9DS1_RaspberryPi_Library
 $ make
+$ sudo make install
+```
+
+## Python example
+
+```
+$ cd ./example
+$ sudo python LSM9DS1_Basic_I2C.py
 ```
