@@ -16,6 +16,7 @@ LSM9DS1.o: $(SRC)LSM9DS1.cpp
 
 # static library
 $(LIB)liblsm9ds1.a: LSM9DS1.o
+	mkdir -p $(LIB)
 	ar rcs $(LIB)liblsm9ds1.a LSM9DS1.o
 
 # dynamic library
