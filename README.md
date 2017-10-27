@@ -13,6 +13,14 @@ This library supports only I2C.
 
 * [WiringPi](http://wiringpi.com/)
 
+```
+$ sudo apt-get install libi2c-dev
+$ git clone git://git.drogon.net/wiringPi
+$ cd wiringPi
+$ git pull origin
+$ ./build
+```
+
 ## Install
 
 ```
